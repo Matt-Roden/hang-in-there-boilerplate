@@ -183,8 +183,11 @@ function buildCustomPoster(e) {
   e.preventDefault()
   currentPoster = new Poster(customPosterUrl.value, customTitleText.value, customQuoteText.value);
   image.src = customPosterUrl.value;
-  customTitleText.innerText = customTitleText.value;
-  customQuoteText.innerText = customQuoteText.value;
-
+  title.innerText = customTitleText.value;
+  quote.innerText = customQuoteText.value;
+  images.push(image.src);
+  titles.push(title.innerText);
+  quotes.push(quote.innerText);
+  backToMainFromFormSection();
 
 }
