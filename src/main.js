@@ -194,9 +194,9 @@ function buildCustomPoster(e) {
 
 function savePoster(e) {
   e.preventDefault()
-  if (savedPosters.includes(currentPoster) === false) {
+  if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster)
-  } 
+  }
   console.log(savedPosters)
   hideMainShowSavedSection()
 }
