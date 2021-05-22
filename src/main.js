@@ -101,15 +101,15 @@ var savedPosters = [];
 var currentPoster;
 
 // query selector variables go here 👇
-var newRandomPosterButton = document.querySelector('.show-random');
+var mainPage = document.querySelector('.main-poster');
 var image = document.querySelector('img');
 var title = document.querySelector('.poster-title');
 var quote = document.querySelector('.poster-quote');
-var createYourOwnPosterButton = document.querySelector('.show-form');
 var makePosterSection = document.querySelector('.poster-form');
-var mainPage = document.querySelector('.main-poster');
-var showSavedButton = document.querySelector('.show-saved');
 var savedPostersSection = document.querySelector('.saved-posters');
+var createYourOwnPosterButton = document.querySelector('.show-form');
+var newRandomPosterButton = document.querySelector('.show-random');
+var showSavedButton = document.querySelector('.show-saved');
 var nevermindButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
 var showCustomPosterButton = document.querySelector('.make-poster');
@@ -127,7 +127,7 @@ showSavedButton.addEventListener('click', hideMainShowSavedSection);
 nevermindButton.addEventListener('click', backToMainFromFormSection);
 backToMainButton.addEventListener('click', backToMainFromSavedSection);
 showCustomPosterButton.addEventListener('click', buildCustomPoster);
-
+saveCustomPosterButton.addEventListener('click', savePoster);
 
 // functions and event handlers go here 👇
 
@@ -189,4 +189,14 @@ function buildCustomPoster(e) {
   titles.push(title.innerText);
   quotes.push(quote.innerText);
   backToMainFromFormSection();
+}
+// ================== Iteration 3 ==========================
+
+function savePoster(e) {
+  e.preventDefault()
+  if (savedPosters.includes(currentPoster) === false) {
+    savedPosters.push(currentPoster)
+  } 
+  console.log(savedPosters)
+  hideMainShowSavedSection()
 }
