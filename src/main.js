@@ -107,6 +107,7 @@ var title = document.querySelector('.poster-title');
 var quote = document.querySelector('.poster-quote');
 var makePosterSection = document.querySelector('.poster-form');
 var savedPostersSection = document.querySelector('.saved-posters');
+var savedPostersGrid = document.querySelector('.saved-posters-grid');
 var createYourOwnPosterButton = document.querySelector('.show-form');
 var newRandomPosterButton = document.querySelector('.show-random');
 var showSavedButton = document.querySelector('.show-saved');
@@ -161,6 +162,8 @@ function getRandomIndex(array) {
 function hideMainShowFormSection() {
   mainPage.classList.add('hidden');
   makePosterSection.classList.remove('hidden');
+
+
 }
 
 function hideMainShowSavedSection() {
@@ -197,6 +200,6 @@ function savePoster(e) {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster)
   }
-  console.log(savedPosters)
+  
   hideMainShowSavedSection()
 }
