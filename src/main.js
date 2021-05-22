@@ -189,5 +189,4 @@ function buildCustomPoster(e) {
   titles.push(title.innerText);
   quotes.push(quote.innerText);
   backToMainFromFormSection();
-
 }
