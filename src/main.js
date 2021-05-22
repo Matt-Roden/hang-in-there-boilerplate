@@ -110,12 +110,17 @@ var makePosterSection = document.querySelector('.poster-form');
 var mainPage = document.querySelector('.main-poster');
 var showSavedButton = document.querySelector('.show-saved');
 var savedPostersSection = document.querySelector('.saved-posters');
+var nevermindButton = document.querySelector('.show-main');
+var backToMainButton = document.querySelector('.back-to-main');
 
 // event listeners go here 👇
 window.addEventListener('load', makeNewRandomPosterOnLoad);
 newRandomPosterButton.addEventListener('click', makeNewRandomPosterOnClick);
 createYourOwnPosterButton.addEventListener('click', hideMainShowFormSection);
 showSavedButton.addEventListener('click', hideMainShowSavedSection);
+nevermindButton.addEventListener('click', backToMainFromFormSection);
+backToMainButton.addEventListener('click', backToMainFromSavedSection);
+
 // functions and event handlers go here 👇
 
 //================== Iteration 0 ======================
@@ -153,4 +158,14 @@ function hideMainShowFormSection() {
 function hideMainShowSavedSection() {
   mainPage.classList.add('hidden');
   savedPostersSection.classList.remove('hidden');
+}
+
+function backToMainFromFormSection() {
+  mainPage.classList.remove('hidden');
+  makePosterSection.classList.add('hidden');
+}
+
+function backToMainFromSavedSection() {
+  mainPage.classList.remove('hidden');
+  savedPostersSection.classList.add('hidden');
 }
