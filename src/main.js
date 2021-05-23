@@ -107,7 +107,7 @@ var title = document.querySelector('.poster-title');
 var quote = document.querySelector('.poster-quote');
 var makePosterSection = document.querySelector('.poster-form');
 var savedPostersSection = document.querySelector('.saved-posters');
-var savedPostersGrid = document.querySelector('.saved-posters-grid');
+var savedPostersGridArticle = document.querySelector('.saved-posters-grid');
 var createYourOwnPosterButton = document.querySelector('.show-form');
 var newRandomPosterButton = document.querySelector('.show-random');
 var showSavedButton = document.querySelector('.show-saved');
@@ -199,7 +199,14 @@ function savePoster(e) {
   e.preventDefault()
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster)
+    console.log(savedPosters);
   }
-  
-  hideMainShowSavedSection()
+  showSavedPosters()
+}
+
+
+function showSavedPosters() {
+  savedPostersGridArticle.insertAdjectHTML('beforeend', '<img class="mini-poster" src="image.src" alt="nothing to see here">');
+  savedPostersGridArticle.insertAdjectHTML('beforeend', '<h2 class = “mini-poster” >title.innerText</h2>');
+  savedPostersGridArticle.insertAdjectHTML('beforeend', '<h4 class = “mini-poster”>quote.innerText</h4>');
 }
