@@ -199,19 +199,24 @@ function savePoster(e) {
   e.preventDefault()
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster)
-    console.log(savedPosters);
   }
   showSavedPosters()
-  savedPostersSection.classList.add('saved-posters-grid');
-
+  changetoGridClass()
 }
 
 
 function showSavedPosters() {
   savedPostersGridArticle.insertAdjacentHTML('beforeend', '<img class="mini-poster" src="image.src" alt="nothing to see here">');
-  savedPostersGridArticle.insertAdjacentHTML('beforeend', '<h2 class = “mini-poster” >${title.innerText}</h2>');
+  savedPostersGridArticle.insertAdjacentHTML('beforeend', '<h2 class = “mini-poster”>${title.innerText}</h2>');
   savedPostersGridArticle.insertAdjacentHTML('beforeend', '<h4 class = “mini-poster”>${quote.innerText}</h4>');
-  savedPostersGridArticle.classList.add('mini-poster img', 'saved-posters-grid');
-  savedPostersGridArticle.classList.add('mini-poster h2', 'saved-posters-grid');
-  savedPostersGridArticle.classList.add('mini-poster h4', 'saved-posters-grid');
+}
+
+function changetoGridClass() {
+  if (savedPostersSection.classList.contains('saved-posters')) {
+    savedPostersSection.classList.remove('saved-posters');
+  } else {
+    savedPostersSection.classList.add('saved-posters-grid');
+    savedPostersGridArticle.classList.add('mini-poster');
+  }
+
 }
