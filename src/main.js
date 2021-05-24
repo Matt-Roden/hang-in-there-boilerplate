@@ -101,23 +101,25 @@ var savedPosters = [];
 var currentPoster;
 
 // query selector variables go here 👇
-var newRandomPosterButton = document.querySelector('.show-random');
+var mainPage = document.querySelector('.main-poster');
 var image = document.querySelector('img');
 var title = document.querySelector('.poster-title');
 var quote = document.querySelector('.poster-quote');
-var createYourOwnPosterButton = document.querySelector('.show-form');
 var makePosterSection = document.querySelector('.poster-form');
-var mainPage = document.querySelector('.main-poster');
-var showSavedButton = document.querySelector('.show-saved');
 var savedPostersSection = document.querySelector('.saved-posters');
+var savedPostersGridArticle = document.querySelector('.saved-posters-grid');
+var createYourOwnPosterButton = document.querySelector('.show-form');
+var newRandomPosterButton = document.querySelector('.show-random');
+var showSavedButton = document.querySelector('.show-saved');
 var nevermindButton = document.querySelector('.show-main');
 var backToMainButton = document.querySelector('.back-to-main');
 var showCustomPosterButton = document.querySelector('.make-poster');
-var saveCustomPosterButton = document.querySelector('.save-poster');
+var savePosterButton = document.querySelector('.save-poster');
 var customPosterUrl = document.querySelector('#poster-image-url');
 var customQuoteText = document.querySelector('#poster-quote');
 var customTitleText = document.querySelector('#poster-title');
 
+// var imgString = '<img class="mini-poster" src="image.src" alt="nothing to see here">'
 
 // event listeners go here 👇
 window.addEventListener('load', makeNewRandomPosterOnLoad);
@@ -127,6 +129,8 @@ showSavedButton.addEventListener('click', hideMainShowSavedSection);
 nevermindButton.addEventListener('click', backToMainFromFormSection);
 backToMainButton.addEventListener('click', backToMainFromSavedSection);
 showCustomPosterButton.addEventListener('click', buildCustomPoster);
+savePosterButton.addEventListener('click', savePoster);
+savedPostersGridArticle.addEventListener('dblclick', deletePoster);
 
 
 // functions and event handlers go here 👇
@@ -152,6 +156,7 @@ function changeTitle() {
 }
 function changeQuote() {
   quote.innerText = quotes[getRandomIndex(quotes)];
+  currentPoster = new Poster(image.src, title.innerText, quote.innerText)
 }
 
 function getRandomIndex(array) {
@@ -161,6 +166,8 @@ function getRandomIndex(array) {
 function hideMainShowFormSection() {
   mainPage.classList.add('hidden');
   makePosterSection.classList.remove('hidden');
+
+
 }
 
 function hideMainShowSavedSection() {
@@ -190,3 +197,50 @@ function buildCustomPoster(e) {
   quotes.push(quote.innerText);
   backToMainFromFormSection();
 }
+// ================== Iteration 3 ==========================
+
+function posterNotSaved(posterObject) {
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id === posterObject.id) {
+      return false;
+    }
+  }
+  return true;
+};
+
+
+function savePoster() {
+  if (posterNotSaved(currentPoster) === true) {
+    savedPosters.push(currentPoster)
+  }
+  console.log(savedPosters);
+  renderSavedPosters();
+};
+
+function renderSavedPosters() {
+    savedPostersGridArticle.innerHTML = "";
+    for (var i = 0; i < savedPosters.length; i++) {
+      var posterObject = savedPosters[i];
+    savedPostersGridArticle.innerHTML +=
+    `<section class="mini-poster" id=${posterObject.id}>
+      <img id=${posterObject.id} src=${posterObject.imageURL}>
+      <h2 id=${posterObject.id}>${posterObject.title}</h2>
+      <h4 id=${posterObject.id}>${posterObject.quote}</h4>
+    </section>`
+    }
+}
+
+function deletePoster(event) {
+  for (var i =0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id == event.target.id) {
+      savedPosters.splice(i, 1);
+    }
+  }
+  renderSavedPosters();
+}
+
+
+  // savedPosters.innerHTML = savedPostersGridArticle;
+  // savedPostersGridArticle.insertAdjacentHTML('beforeend', imgString);
+  // savedPostersGridArticle.insertAdjacentHTML('beforeend', '<h2 class = “mini-poster”>${title.innerText}</h2>');
+  // savedPostersGridArticle.insertAdjacentHTML('beforeend', '<h4 class = “mini-poster”>${quote.innerText}</h4>');
