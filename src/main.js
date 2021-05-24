@@ -1,5 +1,3 @@
-
-// we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -100,7 +98,7 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
-// query selector variables go here 👇
+
 var mainPage = document.querySelector('.main-poster');
 var image = document.querySelector('img');
 var title = document.querySelector('.poster-title');
@@ -119,9 +117,7 @@ var customPosterUrl = document.querySelector('#poster-image-url');
 var customQuoteText = document.querySelector('#poster-quote');
 var customTitleText = document.querySelector('#poster-title');
 
-// var imgString = '<img class="mini-poster" src="image.src" alt="nothing to see here">'
 
-// event listeners go here 👇
 window.addEventListener('load', makeNewRandomPosterOnLoad);
 newRandomPosterButton.addEventListener('click', makeNewRandomPosterOnClick);
 createYourOwnPosterButton.addEventListener('click', hideMainShowFormSection);
@@ -133,9 +129,6 @@ savePosterButton.addEventListener('click', savePoster);
 savedPostersGridArticle.addEventListener('dblclick', deletePoster);
 
 
-// functions and event handlers go here 👇
-
-//================== Iteration 0 ======================
 function makeNewRandomPosterOnClick(){
   changeImg();
   changeTitle();
@@ -151,9 +144,11 @@ function makeNewRandomPosterOnLoad(){
 function changeImg() {
   image.src = images[getRandomIndex(images)];
 }
+
 function changeTitle() {
   title.innerText = titles[getRandomIndex(titles)];
 }
+
 function changeQuote() {
   quote.innerText = quotes[getRandomIndex(quotes)];
   currentPoster = new Poster(image.src, title.innerText, quote.innerText)
@@ -162,12 +157,10 @@ function changeQuote() {
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-// ============== Iteration 1 ====================
+
 function hideMainShowFormSection() {
   mainPage.classList.add('hidden');
   makePosterSection.classList.remove('hidden');
-
-
 }
 
 function hideMainShowSavedSection() {
@@ -185,7 +178,7 @@ function backToMainFromSavedSection() {
   mainPage.classList.remove('hidden');
   savedPostersSection.classList.add('hidden');
 }
-// ============= Iteration 2 ===============
+
 function buildCustomPoster(e) {
   e.preventDefault()
   currentPoster = new Poster(customPosterUrl.value, customTitleText.value, customQuoteText.value);
@@ -197,7 +190,6 @@ function buildCustomPoster(e) {
   quotes.push(quote.innerText);
   backToMainFromFormSection();
 }
-// ================== Iteration 3 ==========================
 
 function posterNotSaved(posterObject) {
   for (var i = 0; i < savedPosters.length; i++) {
@@ -238,9 +230,3 @@ function deletePoster(event) {
   }
   renderSavedPosters();
 }
-
-
-  // savedPosters.innerHTML = savedPostersGridArticle;
-  // savedPostersGridArticle.insertAdjacentHTML('beforeend', imgString);
-  // savedPostersGridArticle.insertAdjacentHTML('beforeend', '<h2 class = “mini-poster”>${title.innerText}</h2>');
-  // savedPostersGridArticle.insertAdjacentHTML('beforeend', '<h4 class = “mini-poster”>${quote.innerText}</h4>');
